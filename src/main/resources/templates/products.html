@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<h1 align="center">Products</h1>
+<div class="companies" align="center">
+    <a type="button" class="btn btn-primary" href="/">Main menu</a>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-group-item-secondary"
+                    th:each="product: ${productsList}">
+                    <span th:text="${product}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="/products/add" method="POST">
+                <div class="form-group">
+                    <label for="productsName">Add products</label>
+                    <input type="text" name="productsName" class="form-control" id="productsName" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label for="productsSalary">Salary</label>
+                    <input type="text" name="productsSalary" class="form-control" id="productsSalary" placeholder="Enter salary">
+                </div>
+                <div class="form-group">
+                    <label for="listManufacturer">Manufacture</label>
+                    <select class="form-control" id="listManufacturer" name="listManufacturer">
+                        <option selected value="">Select Manufacture</option>
+                        <option th:each="manufacturer: ${listManufacturer}"
+                                th:value="${manufacturer.id}"
+                                th:text="${manufacturer.manufacturerName}">
+
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add products</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/products/update" method="POST">
+                <div class="form-group">
+                    <label for="updateProductsUUID">Update products</label>
+                    <input type="text" name="updateProductsUUID" class="form-control" id="updateProductsUUID" placeholder="Enter UUID">
+                </div>
+                <div class="form-group">
+                    <label for="updateProductsName">Name</label>
+                    <input type="text" name="updateProductsName" class="form-control" id="updateProductsName" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label for="updateProductsSalary">Salary</label>
+                    <input type="text" name="updateProductsSalary" class="form-control" id="updateProductsSalary" placeholder="Enter salary">
+                </div>
+                <div class="form-group">
+                    <label for="updateListManufacturer">Manufacture</label>
+                    <select class="form-control" id="updateListManufacturer" name="updateListManufacturer">
+                        <option selected value="">Select Manufacture</option>
+                        <option th:each="manufacturer: ${listManufacturer}"
+                                th:value="${manufacturer.id}"
+                                th:text="${manufacturer.manufacturerName}">
+
+                        </option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Update Products</button>
+            </form>
+        </div>
+        <div class="col">
+            <form action="/products/delete" method="post">
+                <div class="form-group">
+                    <label for="deleteProducts">Delete Products</label>
+                    <input type="text" class="form-control" name="deleteProducts" id="deleteProducts"
+                           placeholder="Enter UUID">
+                </div>
+                <button type="submit" class="btn btn-primary">Delete Products</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+</html>
